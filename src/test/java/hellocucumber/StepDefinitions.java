@@ -14,7 +14,18 @@ public class StepDefinitions {
         demoShopPage.openPage();
     }
 
-    @When("I add first gift card worth more than {string} with quantity {int} to cart and wishlist")
+    @And("I click the 'Add to wishlist` button")
+    public void clickFavoriteButton() {
+        demoShopPage.clickButtonInItemOverviewByText("Add to wishlist");
+    }
+
+    @And("I click the 'Add to cart' button and wait for loader to close")
+    public void clickAddToCartButton() {
+        demoShopPage.clickButtonInItemOverviewByText("Add to cart");
+        commonBrowserActions.waitUntilElementDisplayed(By.cssSelector("[id='bar-notification']"));
+    }
+
+    @When("I open first gift card worth more than {string} with quantity {int}")
     public void addGiftCard(String price, int quantity) {
         commonBrowserActions.clickLinkInsideElementWithSelector(
                 By.cssSelector("[class*=leftside]"), "Gift Cards");
@@ -22,12 +33,9 @@ public class StepDefinitions {
         commonBrowserActions.fillInInputByClassWithValue("recipient-name", "recipient");
         commonBrowserActions.fillInInputByClassWithValue("sender-name", "sender");
         commonBrowserActions.fillInInputByClassWithValue("qty-input", Integer.valueOf(quantity).toString());
-        demoShopPage.clickButtonInItemOverviewByText("Add to cart");
-        commonBrowserActions.waitUntilElementDisplayed(By.cssSelector("[id='bar-notification']"));
-        demoShopPage.clickButtonInItemOverviewByText("Add to wishlist");
     }
 
-    @And("Add custom jewellery with material {string} and length {int} and quantity {int} and add to cart and wishlist")
+    @And("I open custom jewellery with material {string} and length {int} and quantity {int}")
     public void selectMaterial(String material, int length, int quantity) {
         commonBrowserActions.clickLinkInsideElementWithSelector(
                 By.cssSelector("[class*=side]"), "Jewelry");
@@ -39,9 +47,6 @@ public class StepDefinitions {
         commonBrowserActions.fillInInputByClassWithValue("textbox", Integer.valueOf(length).toString());
         demoShopPage.clickRadioButtonWithTextInProductOverview("Star ");
         commonBrowserActions.fillInInputByClassWithValue("qty-input", Integer.valueOf(quantity).toString());
-        demoShopPage.clickButtonInItemOverviewByText("Add to cart");
-        commonBrowserActions.waitUntilElementDisplayed(By.cssSelector("[id='bar-notification']"));
-        demoShopPage.clickButtonInItemOverviewByText("Add to wishlist");
     }
 
     @Then("I validate that the subtotal in cart is {string}")
