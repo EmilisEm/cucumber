@@ -11,7 +11,7 @@ public class DemoqoPage {
   private CommonBrowserActions commonBrowserActions;
 
   public void openPage() {
-    driver.get("http://web.archive.org/web/20240208220128/https://demoqa.com/");
+    driver.get("https://demoqa.com");
     commonBrowserActions = new CommonBrowserActions(driver);
   }
 

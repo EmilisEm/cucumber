@@ -50,7 +50,7 @@ public class StepDefinitions {
         commonBrowserActions.fillInInputByClassWithValue("qty-input", Integer.valueOf(quantity).toString());
     }
 
-    @Then("I validate that the subtotal in cart is {string}")
+    @Then("the subtotal in cart is {string}")
     public void validateSubTotal(String expectedTotal) {
         demoShopPage.clickWishlistLink();
         demoShopPage.clickAllAddToCartCheckboxes();
@@ -63,6 +63,9 @@ public class StepDefinitions {
     public void openDemoQA() {
         demoqoPage.openPage();
     }
+
+    @Given("user account is newly created")
+    public void smt(){};
 
     @When("I navigate to Widgets and open Progress Bar")
     public void navigateToProgressBar() {

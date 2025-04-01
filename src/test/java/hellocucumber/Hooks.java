@@ -1,12 +1,8 @@
 package hellocucumber;
 
-import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
+import io.cucumber.java.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.Optional;
@@ -14,21 +10,36 @@ import java.util.Optional;
 public class Hooks {
     public static WebDriver driver;
 
-    @Before
+    @Before(order = 1)
     public void before() {
+        System.out.println("Running First");
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
+    }
+
+    @Before(order = 2, value = "@CreateResources")
+    public void createResources() {
+        System.out.println("Creating resources");
+    }
+
+    @BeforeStep
+    public static void beforeStep() {
+        System.out.println("Before All steps run once");
     }
 
     @BeforeAll
     public static void beforeAll() {
         System.out.println("Before All scenarios run once");
-        WebDriverManager.firefoxdriver().setup();
     }
 
     @After
     public void after() {
         Optional.ofNullable(driver).ifPresent(WebDriver::quit);
+    }
+
+    @AfterStep
+    public static void afterStep() {
+        System.out.println("After all steps run once");
     }
 
     @AfterAll
