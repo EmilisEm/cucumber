@@ -1,6 +1,7 @@
 package hellocucumber;
 
 import io.cucumber.java.en.*;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
@@ -14,7 +15,7 @@ public class StepDefinitions {
         demoShopPage.openPage();
     }
 
-    @And("I click the 'Add to wishlist` button")
+    @And("I click the 'Add to wishlist' button")
     public void clickFavoriteButton() {
         demoShopPage.clickButtonInItemOverviewByText("Add to wishlist");
     }
@@ -84,7 +85,7 @@ public class StepDefinitions {
         commonBrowserActions.clickElementContainingText(HtmlElement.SPAN, "Web Tables");
     }
 
-    @When("I create a new user and delete a user")
+    @When("I create users until pagination loads second page")
     public void createAndDeleteUser() {
         commonBrowserActions.performActionUntilElementDisplayed(
                 By.xpath("//span[@class='-totalPages' and text() = '2']"),
@@ -99,5 +100,15 @@ public class StepDefinitions {
     @Then("I validate the page count is {int}")
     public void validatePageCount(int expectedCount) {
         demoqoPage.validatePageCount(expectedCount);
+    }
+
+    @Given("I have a string value {string}")
+    public void iHaveAStringValueValue(String value) {
+        Assertions.assertNotNull(value);
+    }
+
+    @And("the string value \"{htmlElement}\" is converted to a custom type")
+    public void theStringValueValueIsConvertedToACustomType(HtmlElement element) {
+        Assertions.assertNotNull(element);
     }
 }
