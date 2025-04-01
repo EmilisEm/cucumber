@@ -67,7 +67,8 @@ public class CommonBrowserActions {
   }
 
   public void elementByClassContainsAmountOfChildren(String className, int amount) {
-    Assertions.assertEquals(amount, getElementByClass(className).findElements(By.xpath("child::*")).size());
+    Assertions.assertEquals(
+        amount, getElementByClass(className).findElements(By.xpath("child::*")).size());
   }
 
   public WebElement getElementByClass(String className) {

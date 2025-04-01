@@ -1,13 +1,11 @@
 package hellocucumber;
 
-import hellocucumber.CommonBrowserActions;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
-import java.util.List;
 
 public class DemoShopPage {
   private final WebDriver driver;
@@ -82,7 +80,8 @@ public class DemoShopPage {
 
   public void validateProductDescriptionContainsText(String text, WebElement product) {
     product.findElement(By.xpath(".//h2/a")).click();
-    Assertions.assertTrue(commonBrowserActions.getElementByClass("short-description").getText().contains(text));
+    Assertions.assertTrue(
+        commonBrowserActions.getElementByClass("short-description").getText().contains(text));
     driver.navigate().back();
   }
 
