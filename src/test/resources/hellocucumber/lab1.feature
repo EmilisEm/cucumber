@@ -1,7 +1,6 @@
 Feature: Lab1 Testing
   This is a Lab1 test and the description of it
 
-
   Scenario Outline: Adding a gift card and custom jewelry to cart
     Given I open the demo shop page
     When I open first gift card worth more than <card_min_price> with quantity <card_quantity>
